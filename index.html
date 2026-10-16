@@ -3,156 +3,279 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fbf8f1">
 <title>For My Baby Love Alam ♡</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ivory:#fbf8f1; --pearl:#ffffff; --mist:#e8eef6;
-  --navy:#14284b; --navy-soft:#3d4f70; --gold:#b48a3c; --gold-light:#d9b96c;
+  --ivory:#fbf8f1; --navy:#14284b; --navy2:#0b1a33; --navy-soft:#44557a;
+  --gold:#b48a3c; --gold-light:#e2c57e;
+  --foil:linear-gradient(110deg,#8a6420 0%,#e8cb82 28%,#b48a3c 50%,#f4de9f 72%,#9c7428 100%);
+  --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-*{margin:0;padding:0;box-sizing:border-box}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
 body{
-  min-height:100dvh;color:var(--navy);font-family:'Jost',system-ui,sans-serif;
+  color:var(--navy);font-family:'Jost',system-ui,sans-serif;overflow:hidden;
   background:
-    radial-gradient(circle at 50% 0%,#ffffff 0,transparent 55%),
-    linear-gradient(160deg,#f6f1e4 0%,#fbf8f1 45%,#e8eef6 100%);
-  overflow-x:hidden;
-  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+    radial-gradient(ellipse at 50% 18%,#ffffff 0,transparent 60%),
+    radial-gradient(ellipse at 85% 95%,#dfe8f5 0,transparent 55%),
+    linear-gradient(160deg,#f3ecdb 0%,#faf6ec 50%,#e6edf7 100%);
 }
-.main{min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:40px 22px;text-align:center}
+body::before{content:"";position:fixed;inset:0;background:var(--noise);opacity:.6;pointer-events:none}
+.scene{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:env(safe-area-inset-top,0px) 16px env(safe-area-inset-bottom,0px);transition:opacity .6s,transform .8s}
+[hidden]{display:none!important}
 
-.card{
-  position:relative;width:100%;max-width:560px;background:var(--pearl);
-  padding:58px 36px 44px;border-radius:4px;
-  box-shadow:0 30px 70px rgba(20,40,75,.16),0 2px 6px rgba(20,40,75,.06);
-  animation:rise .9s ease both;
-}
-.card::before{content:"";position:absolute;inset:12px;border:1px solid var(--gold-light);pointer-events:none}
-.card::after{content:"";position:absolute;inset:17px;border:1px solid rgba(180,138,60,.35);pointer-events:none}
-@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+/* ---------- Envelope ---------- */
+.env-hint{margin-bottom:46px;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;color:var(--navy-soft)}
+.envelope{position:relative;width:min(88vw,400px);aspect-ratio:4/3.1;cursor:pointer;perspective:1400px;
+  filter:drop-shadow(0 26px 24px rgba(20,40,75,.26));outline:none;animation:envIn 1s cubic-bezier(.2,.9,.3,1) both}
+@keyframes envIn{from{opacity:0;transform:translateY(30px) rotate(-2deg)}to{opacity:1;transform:none}}
+.envelope:focus-visible{outline:3px solid var(--gold-light);outline-offset:10px}
+.env-body{position:absolute;inset:0;z-index:1;border-radius:6px;background:linear-gradient(145deg,#fffdf8,#eee3cb)}
+.env-pocket{position:absolute;inset:0;z-index:2;border-radius:6px;
+  background:var(--noise),linear-gradient(180deg,#f8f0de,#e9dcc0);
+  clip-path:polygon(0 0,50% 58%,100% 0,100% 100%,0 100%)}
+.env-to{position:absolute;z-index:3;left:0;right:0;bottom:6%;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:clamp(20px,6vw,26px);color:var(--navy)}
+.env-to small{display:block;font-family:'Jost',sans-serif;font-style:normal;font-weight:400;font-size:11px;color:var(--navy-soft);margin-top:4px;letter-spacing:.4px}
+.flap{position:absolute;left:0;top:0;width:100%;height:58%;z-index:3;transform-origin:top;transform-style:preserve-3d;
+  transition:transform .85s cubic-bezier(.5,0,.2,1)}
+.flap>div{position:absolute;inset:0;clip-path:polygon(0 0,100% 0,50% 100%);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.flap-out{background:var(--noise),linear-gradient(170deg,#fffdf8 10%,#e6d8b7 100%)}
+.flap-in{background:var(--noise),linear-gradient(160deg,#1f3a6a,#0b1a33);transform:rotateX(180deg)}
+.envelope.open .flap{transform:rotateX(180deg);z-index:0}
+.seal{position:absolute;z-index:6;left:50%;top:58%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;
+  display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:20px;color:#5a3f0e;
+  background:radial-gradient(circle at 32% 28%,#f6e3a8,#c9a24e 55%,#8f6a22);
+  box-shadow:0 6px 14px rgba(20,40,75,.4),inset 0 0 0 3px rgba(255,255,255,.22),inset 0 -3px 6px rgba(90,60,10,.35);
+  animation:pulse 2.4s ease-in-out infinite;transition:transform .45s,opacity .45s}
+@keyframes pulse{50%{box-shadow:0 6px 14px rgba(20,40,75,.4),0 0 0 10px rgba(226,197,126,.28),inset 0 0 0 3px rgba(255,255,255,.22)}}
+.envelope.open .seal{transform:scale(.4);opacity:0;animation:none}
+.env-tap{margin-top:40px;font-size:14px;font-weight:500;color:var(--navy)}
+.tap-hint{position:absolute;z-index:7;left:50%;top:calc(58% - 84px);transform:translateX(-50%);padding:8px 16px;border-radius:999px;background:var(--navy);color:var(--gold-light);font-size:13px;font-weight:500;white-space:nowrap;box-shadow:0 6px 14px rgba(20,40,75,.35);animation:bounce 1.4s ease-in-out infinite;transition:opacity .3s}
+.tap-hint i{position:absolute;left:50%;bottom:-6px;width:12px;height:12px;background:var(--navy);transform:translateX(-50%) rotate(45deg)}
+@keyframes bounce{50%{transform:translateX(-50%) translateY(7px)}}
+.envelope.open .tap-hint{opacity:0;animation:none}
+.leave{opacity:0;transform:translateY(40px) scale(.96)}
+.env-pocket svg,.flap-out svg{position:absolute;inset:0;width:100%;height:100%}
+.stamp{position:absolute;z-index:3;right:6%;top:34%;width:12.5%;aspect-ratio:3/4;display:grid;place-items:center;background:#fffdf8;border:1px dashed var(--gold);outline:3px solid #fffdf8;box-shadow:0 2px 6px rgba(20,40,75,.18);transform:rotate(4deg)}
+.seal{width:70px;height:70px;margin:-35px 0 0 -35px;border-radius:0;background:none;box-shadow:none;display:block;font-size:0;filter:drop-shadow(0 5px 6px rgba(60,40,10,.45));animation:sealPulse 2.6s ease-in-out infinite}
+.seal svg{width:100%;height:100%;display:block;overflow:visible}
+@keyframes sealPulse{50%{transform:scale(1.06)}}
+.tap-hint{top:calc(58% - 94px)}
 
-.cap{
-  width:84px;height:84px;margin:0 auto 24px;border-radius:50%;display:grid;place-items:center;
-  background:linear-gradient(145deg,#1d3560,#0e1d38);
-  box-shadow:0 10px 26px rgba(20,40,75,.35),0 0 0 4px #fff,0 0 0 5px var(--gold-light);
-}
-.cap svg{width:46px;height:46px;stroke:var(--gold-light);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+/* ---------- Card ---------- */
+.book{position:relative;width:min(88vw,420px);height:min(74dvh,660px);perspective:1900px;animation:cardIn .9s cubic-bezier(.2,.9,.3,1) both;
+  filter:drop-shadow(0 30px 30px rgba(20,40,75,.3))}
+@keyframes cardIn{from{opacity:0;transform:translateY(40px) scale(.94)}to{opacity:1;transform:none}}
 
-.eyebrow{color:var(--gold);font-size:14px;font-weight:500;letter-spacing:.5px;margin-bottom:14px}
-h1{font-family:'Cormorant Garamond',serif;font-weight:700;line-height:1.02;font-size:clamp(44px,10vw,68px);color:var(--navy);letter-spacing:-.5px}
-h1 span{display:block;font-style:italic;font-weight:600;color:var(--gold)}
-.gold-line{height:1px;width:96px;margin:24px auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.name{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:clamp(30px,7vw,40px);color:var(--navy);margin-bottom:14px}
-.desc{font-weight:300;font-size:15px;line-height:1.95;color:var(--navy-soft);max-width:400px;margin:0 auto 32px}
-
-.open-btn{
-  border:0;border-radius:2px;padding:15px 46px;cursor:pointer;font:500 14px 'Jost',sans-serif;letter-spacing:1.5px;
-  color:#fff;background:linear-gradient(145deg,#1d3560,#0e1d38);
-  box-shadow:0 10px 24px rgba(20,40,75,.3),inset 0 0 0 1px var(--gold-light);
-  transition:transform .25s,box-shadow .25s;
-}
-.open-btn:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(20,40,75,.38),inset 0 0 0 1px var(--gold-light)}
-.open-btn:focus-visible,.close-btn:focus-visible{outline:3px solid var(--gold-light);outline-offset:4px}
-.from{margin-top:30px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:var(--navy-soft)}
-
-/* Letter */
-.wish-dialog{
-  position:fixed;inset:0;margin:auto;width:min(92%,660px);max-height:min(88dvh,820px);
-  border:0;border-radius:4px;background:var(--pearl);color:var(--navy);
-  box-shadow:0 40px 100px rgba(10,20,45,.45);overflow-y:auto;padding:54px 40px 40px;text-align:center;
-}
-.wish-dialog::backdrop{background:rgba(14,29,56,.6);backdrop-filter:blur(6px)}
-.wish-dialog[open]{animation:rise .4s ease both}
-.wish-dialog::before{content:"";display:block;height:4px;margin:-54px -40px 40px;background:linear-gradient(90deg,var(--navy),var(--gold),var(--navy))}
-.close-btn{
-  position:sticky;float:right;top:0;margin:-24px -16px 0 0;width:38px;height:38px;border-radius:50%;
-  border:1px solid var(--gold-light);background:var(--navy);color:var(--gold-light);font-size:22px;cursor:pointer;z-index:2;
-}
+.inside{position:absolute;inset:0;border-radius:4px 8px 8px 4px;overflow:hidden;background:var(--noise),linear-gradient(160deg,#fffefb,#f8f2e3)}
+.inside::before{content:"";position:absolute;inset:9px;border:1px solid var(--gold-light);border-radius:2px;pointer-events:none;z-index:2}
+.inside::after{content:"";position:absolute;left:10px;right:10px;bottom:10px;height:44px;background:linear-gradient(transparent,#fbf6ea);pointer-events:none;z-index:2}
+.scroll{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:46px 30px 70px;text-align:center}
 .card-label{color:var(--gold);font-weight:500;font-size:14px;margin-bottom:10px}
-.card-heading{font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--navy);font-size:clamp(36px,8vw,50px);line-height:1.08;margin-bottom:8px}
-.card-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;color:var(--gold)}
-.wish-content{margin-top:26px;font-weight:300;font-size:15px;line-height:2.05;color:#25375a}
-.wish-content p{margin-bottom:22px}
-.wish-content .highlight{color:var(--navy);font-weight:500;border-bottom:1px solid var(--gold-light)}
-.signature{margin-top:28px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;color:var(--navy);font-size:28px;line-height:1.5}
-.small-heart{font-size:26px;color:var(--gold);margin-top:14px}
+.card-heading{font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--navy);font-size:clamp(34px,9vw,44px);line-height:1.08;margin-bottom:8px}
+.card-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:23px;color:var(--gold)}
+.gold-line{height:1px;width:96px;margin:22px auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.wish-content{font-weight:300;font-size:15px;line-height:2.05;color:#1f3156}
+.wish-content p{margin-bottom:20px}
+.wish-content .highlight{display:block;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:21px;line-height:1.55;color:var(--navy);padding:16px 0;background:linear-gradient(90deg,transparent,var(--gold-light),transparent) top center/72px 1px no-repeat,linear-gradient(90deg,transparent,var(--gold-light),transparent) bottom center/72px 1px no-repeat}
+.signature{margin-top:26px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;color:var(--navy);font-size:27px;line-height:1.5}
+.small-heart{font-size:24px;color:var(--gold);margin:12px 0 22px}
+.mono{width:58px;height:58px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-weight:700;font-size:17px;color:var(--navy);background:radial-gradient(circle at 32% 28%,#fff8e0,#f1dfaa);box-shadow:0 0 0 1px var(--gold-light),0 0 0 5px #fffdf8,0 0 0 6px rgba(180,138,60,.45)}
+.scroll .gold-line{position:relative;overflow:visible;background:linear-gradient(90deg,transparent,var(--gold) 38%,transparent 38%,transparent 62%,var(--gold) 62%,transparent)}
+.scroll .gold-line::after{content:"◆";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:8px;line-height:1;color:var(--gold)}
+.close-card{border:1px solid var(--gold-light);background:transparent;color:var(--navy-soft);padding:10px 26px;border-radius:2px;font:400 12px 'Jost',sans-serif;letter-spacing:1.5px;cursor:pointer}
 
-@media(max-width:600px){
-  .card{padding:50px 24px 36px}
-  .wish-dialog{padding:46px 24px 32px}
-  .wish-dialog::before{margin:-46px -24px 36px}
-  .wish-content{font-size:14.5px;line-height:2}
-}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.cover{position:absolute;inset:0;z-index:5;transform-origin:left center;transform-style:preserve-3d;cursor:pointer;outline:none;
+  transition:transform 1.1s cubic-bezier(.6,0,.25,1),visibility 0s linear 0s}
+.cover:focus-visible{outline:3px solid var(--gold-light);outline-offset:6px}
+.book.open .cover{transform:rotateY(-172deg);visibility:hidden;pointer-events:none;transition:transform 1.1s cubic-bezier(.6,0,.25,1),visibility 0s linear 1.1s}
+.face{position:absolute;inset:0;border-radius:4px 8px 8px 4px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.cover-front{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:34px 28px 96px;color:var(--navy);
+  background:var(--noise),linear-gradient(160deg,#ffffff,#f8f2e3);
+  box-shadow:inset 6px 0 10px rgba(20,40,75,.1)}
+.cover-front::before{content:"";position:absolute;inset:12px;border:1px solid var(--gold-light);opacity:.85;pointer-events:none}
+.cover-front::after{content:"";position:absolute;inset:17px;border:1px solid rgba(226,197,126,.35);pointer-events:none}
+.shine{position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(226,197,126,.35) 50%,transparent 60%);transform:translateX(-120%);animation:shine 5s ease-in-out 1.2s infinite;pointer-events:none}
+@keyframes shine{0%,60%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+.cap{width:84px;height:84px;margin-bottom:22px;padding:19px;border-radius:50%;background:linear-gradient(145deg,#1d3560,#0e1d38);box-shadow:0 10px 24px rgba(20,40,75,.3),0 0 0 4px #fff,0 0 0 5px var(--gold-light)}
+.cap svg{width:100%;height:100%;stroke:var(--gold-light);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.eyebrow{color:var(--gold);font-size:14px;font-weight:500;letter-spacing:.5px;margin-bottom:14px}
+h1{font-family:'Cormorant Garamond',serif;font-weight:700;line-height:1;font-size:clamp(38px,11vw,52px);letter-spacing:-.3px;
+  color:var(--navy)}
+h1 span{display:block;font-style:italic;font-weight:600;color:var(--gold)}
+.cover .gold-line{margin:20px auto}
+.name{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:clamp(28px,8vw,36px);color:var(--navy);margin-bottom:12px}
+.desc{font-weight:300;font-size:13.5px;line-height:1.9;color:var(--navy-soft);max-width:300px}
+.from{margin-top:20px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--navy-soft)}
+.open-hint{position:absolute;left:50%;bottom:32px;transform:translateX(-50%);display:flex;align-items:center;gap:10px;white-space:nowrap;padding:11px 20px 11px 22px;border-radius:999px;font-size:13px;letter-spacing:.4px;font-weight:500;color:#fff;background:linear-gradient(145deg,#1d3560,#0e1d38);box-shadow:0 8px 20px rgba(20,40,75,.35),inset 0 0 0 1px var(--gold-light);animation:nudge 2s ease-in-out infinite}
+.open-hint b{color:var(--gold-light);font-size:22px;line-height:1;font-weight:500;animation:arrow 1.2s ease-in-out infinite}
+@keyframes arrow{50%{transform:translateX(5px)}}
+@keyframes nudge{50%{transform:translateX(-50%) scale(1.05)}}
+@keyframes blink{50%{opacity:.35}}
+.cover-back{transform:rotateY(180deg);background:var(--noise),linear-gradient(160deg,#fffefb,#efe6d0);box-shadow:inset -8px 0 14px rgba(20,40,75,.12)}
+.cover-back::before{content:"";position:absolute;inset:9px;border:1px solid var(--gold-light)}
+
+.tuck-btn{margin-top:20px;min-height:44px;padding:0 24px;border-radius:999px;border:1px solid var(--gold-light);background:rgba(255,255,255,.8);color:var(--navy);font:500 14px 'Jost',sans-serif;cursor:pointer;box-shadow:0 8px 20px rgba(20,40,75,.15);animation:cardIn .5s ease both}
+.tuck-btn:focus-visible{outline:3px solid var(--gold-light);outline-offset:4px}
+button,[role=button]{touch-action:manipulation}
+.scroll{overscroll-behavior:contain}
+.close-card{min-height:44px}
+html{-webkit-text-size-adjust:100%}
+@media(max-height:480px){.env-hint{margin-bottom:16px;font-size:17px}.envelope{width:min(58vw,300px)}.book{height:68dvh;width:min(80vw,420px)}.tuck-btn{margin-top:10px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+@media(max-height:760px){.cover-front{padding-top:22px;padding-bottom:84px}.cap{width:62px;height:62px;padding:14px;margin-bottom:14px}h1{font-size:clamp(34px,9.5vw,44px)}.cover .gold-line{margin:14px auto}.from{margin-top:12px}}
+@media(max-height:620px){.cap{width:52px;height:52px;padding:11px;margin-bottom:12px}.desc{font-size:12.5px;line-height:1.7}.open-hint{bottom:22px}}
 </style>
 </head>
 <body>
 
-<main class="main">
-  <section class="card">
-    <div class="cap">
-      <svg viewBox="0 0 48 48" aria-hidden="true">
-        <path d="M4 17 24 8l20 9-20 9L4 17Z"/><path d="M12 21v11c7 6 17 6 24 0V21"/><path d="M44 17v13"/><circle cx="44" cy="33" r="2"/>
-      </svg>
-    </div>
-    <p class="eyebrow">A little surprise, just for you</p>
-    <h1>Happy Master's <span>Convocation!</span></h1>
-    <div class="gold-line"></div>
-    <h2 class="name">My Alam ♡</h2>
-    <p class="desc">Your hard work, dedication, and dreams have brought you to this beautiful moment. I'm so proud of you, my love.</p>
-    <button class="open-btn" id="openBtn" type="button">Open Me ♡</button>
-    <p class="from">With Love, Your Nisa</p>
-  </section>
+<!-- Envelope -->
+<main class="scene" id="envScene">
+  <p class="env-hint">Something special is waiting for you...</p>
+  <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open the envelope">
+    <div class="env-body"></div>
+    <div class="flap"><div class="flap-out"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0 L50 100 L100 0" fill="none" stroke="#b48a3c" stroke-opacity=".5" stroke-width="2" vector-effect="non-scaling-stroke"/></svg></div><div class="flap-in"></div></div>
+    <div class="env-pocket"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path d="M0 100 L50 58 L100 100 M0 0 L50 58 L100 0" fill="none" stroke="#b48a3c" stroke-opacity=".45" stroke-width="1.2" vector-effect="non-scaling-stroke"/></svg></div>
+    <div class="env-to">To my Alam ♡<small>from Nisa</small></div>
+    
+    <div class="seal" aria-hidden="true"><svg viewBox="0 0 100 100"><defs><radialGradient id="sg" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#fbebb8"/><stop offset=".45" stop-color="#d6b25f"/><stop offset="1" stop-color="#8a6420"/></radialGradient><filter id="wax" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".045" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="10"/></filter></defs><circle cx="50" cy="50" r="40" fill="url(#sg)" filter="url(#wax)"/><circle cx="50" cy="50" r="31" fill="none" stroke="#fbebb8" stroke-opacity=".7" stroke-width="1.6" transform="translate(.8 .8)"/><circle cx="50" cy="50" r="31" fill="none" stroke="#7a5516" stroke-opacity=".75" stroke-width="1.6"/><circle cx="50" cy="50" r="36" fill="none" stroke="#7a5516" stroke-opacity=".5" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="0.1 3.4"/><text x="50" y="58" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-weight="700" font-size="26" fill="#fbebb8" fill-opacity=".8" transform="translate(.8 .9)">N♡A</text><text x="50" y="58" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-weight="700" font-size="26" fill="#6b4710">N♡A</text><ellipse cx="38" cy="30" rx="14" ry="7" fill="#fff" opacity=".22" transform="rotate(-25 38 30)"/></svg></div>
+    <div class="tap-hint" aria-hidden="true">Tap here<i></i></div>
+  </div>
+  
 </main>
 
-<dialog class="wish-dialog" id="wishDialog">
-  <button class="close-btn" id="closeBtn" type="button" aria-label="Close wish">×</button>
-  <div class="card-label">A special letter for you</div>
-  <h2 class="card-heading">Happy Convocation</h2>
-  <p class="card-sub">My Alam yang paling nakal ♡</p>
-  <div class="gold-line"></div>
+<!-- Card -->
+<section class="scene" id="cardScene" hidden>
+  <div class="book" id="book">
 
-  <div class="wish-content">
-    <p><span class="highlight">Congratulations to you, sayang ❤️</span></p>
+    <div class="inside">
+      <div class="scroll" id="scroll">
+        <div class="mono" aria-hidden="true">N♡A</div>
+        <div class="card-label">A special letter for you</div>
+        <h2 class="card-heading">Happy Convocation</h2>
+        <p class="card-sub">My Alam yang paling nakal ♡</p>
+        <div class="gold-line"></div>
 
-    <p>Tahniah, sayang saya! Akhirnya hari yang saya tunggu sudah tiba. Setiap malam yang awak berjaga, setiap penat lelah awak tanggung, semuanya terbayar hari ini. I hope you can feel that I'm right by your side on your convocation day. I didn't know what to get for your convo preparation, so I got you a pair of shoes. May these shoes walk with you through this achievement, as if I'm taking every step right by your side.</p>
+        <div class="wish-content">
+          <p><span class="highlight">Congratulations to you, sayang ❤️</span></p>
 
-    <p>Saya bangga dengan awak, sangat-sangat bangga. Sebenarnya, saya sentiasa bangga dengan awak, dengan setiap usaha, pencapaian dan segala perkara yang awak lakukan.</p>
+          <p>Tahniah, sayang saya! Akhirnya hari yang saya tunggu sudah tiba. Setiap malam yang awak berjaga, setiap penat lelah awak tanggung, semuanya terbayar hari ini. I hope you can feel that I'm right by your side on your convocation day. I didn't know what to get for your convo preparation, so I got you a pair of shoes. May these shoes walk with you through this achievement, as if I'm taking every step right by your side.</p>
 
-    <p>Maafkan saya kerana mungkin selama ini saya jarang mengungkapkan betapa bangganya saya terhadap awak. Tapi percayalah, sayang, jauh di sudut hati saya, saya sentiasa mengagumi awak dan segala usaha awak untuk sampai ke tahap ini.</p>
+          <p>Saya bangga dengan awak, sangat-sangat bangga. Sebenarnya, saya sentiasa bangga dengan awak, dengan setiap usaha, pencapaian dan segala perkara yang awak lakukan.</p>
 
-    <p>Saya percaya awak mampu melakukan apa sahaja yang awak impikan. Walau apa pun cabaran yang datang, saya tahu awak mampu menghadapinya. Di mata saya, awak seorang yang sangat hebat, istimewa dan sempurna dengan cara awak sendiri.</p>
+          <p>Maafkan saya kerana mungkin selama ini saya jarang mengungkapkan betapa bangganya saya terhadap awak. Tapi percayalah, sayang, jauh di sudut hati saya, saya sentiasa mengagumi awak dan segala usaha awak untuk sampai ke tahap ini.</p>
 
-    <p>Semoga Allah SWT sentiasa memberkati setiap langkah awak, mempermudahkan segala urusan, melimpahkan rezeki yang tidak putus-putus, serta mengurniakan kejayaan dan kebahagiaan di dunia dan akhirat. Semoga segala impian yang awak simpan dalam hati satu demi satu menjadi kenyataan.</p>
+          <p>Saya percaya awak mampu melakukan apa sahaja yang awak impikan. Walau apa pun cabaran yang datang, saya tahu awak mampu menghadapinya. Di mata saya, awak seorang yang sangat hebat, istimewa dan sempurna dengan cara awak sendiri.</p>
 
-    <p>Terima kasih kerana terus berusaha dan tidak pernah berputus asa. Saya harap awak tahu betapa berharganya diri awak dan betapa bangganya saya dapat menyaksikan setiap kejayaan awak.</p>
+          <p>Semoga Allah SWT sentiasa memberkati setiap langkah awak, mempermudahkan segala urusan, melimpahkan rezeki yang tidak putus-putus, serta mengurniakan kejayaan dan kebahagiaan di dunia dan akhirat. Semoga segala impian yang awak simpan dalam hati satu demi satu menjadi kenyataan.</p>
 
-    <p><span class="highlight">Congratulations on your Master's Convocation, Sayanggggg ❤️</span></p>
+          <p>Terima kasih kerana terus berusaha dan tidak pernah berputus asa. Saya harap awak tahu betapa berharganya diri awak dan betapa bangganya saya dapat menyaksikan setiap kejayaan awak.</p>
 
-    <p>No matter how far you go or how much you achieve, I will always be one of the people cheering for you, praying for you, and believing in you. Love you bb...</p>
+          <p><span class="highlight">Congratulations on your Master's Convocation, Sayanggggg ❤️</span></p>
 
-    <p><span class="highlight">I'm so proud of you, my love. Always. Nisa Sayang Alam banyak banyakk banyakk</span></p>
+          <p>No matter how far you go or how much you achieve, I will always be one of the people cheering for you, praying for you, and believing in you. Love you bb...</p>
+
+          <p><span class="highlight">I'm so proud of you, my love. Always. Nisa Sayang Alam banyak banyakk banyakk</span></p>
+        </div>
+
+        <div class="gold-line"></div>
+        <div class="signature">With all my love,<br>Your Nisa ♡</div>
+        <div class="small-heart">♡</div>
+        <button class="close-card" id="closeCard" type="button">CLOSE CARD</button>
+      </div>
+    </div>
+
+    <div class="cover" id="cover" role="button" tabindex="0" aria-label="Open the card">
+      <div class="face cover-front">
+        <div class="shine"></div>
+        <div class="cap">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M4 17 24 8l20 9-20 9L4 17Z"/><path d="M12 21v11c7 6 17 6 24 0V21"/><path d="M44 17v13"/><circle cx="44" cy="33" r="2"/>
+          </svg>
+        </div>
+        <p class="eyebrow">A little surprise, just for you</p>
+        <h1>Happy Master's <span>Convocation!</span></h1>
+        <div class="gold-line"></div>
+        <h2 class="name">My Alam ♡</h2>
+        <p class="desc">Your hard work, dedication, and dreams have brought you to this beautiful moment. I'm so proud of you, my love.</p>
+        <p class="from">With Love, Your Nisa</p>
+        <div class="open-hint"><span>Tap to open the card</span><b>›</b></div>
+      </div>
+      <div class="face cover-back"></div>
+    </div>
+
   </div>
-
-  <div class="gold-line"></div>
-  <div class="signature">With all my love,<br>Your Nisa ♡</div>
-  <div class="small-heart">♡</div>
-</dialog>
+</section>
 
 <script>
-const openBtn=document.getElementById("openBtn"),
-      closeBtn=document.getElementById("closeBtn"),
-      wishDialog=document.getElementById("wishDialog");
-openBtn.addEventListener("click",()=>{wishDialog.showModal();wishDialog.scrollTop=0});
-closeBtn.addEventListener("click",()=>wishDialog.close());
-wishDialog.addEventListener("click",e=>{
-  if(e.target===wishDialog){
-    const r=wishDialog.getBoundingClientRect();
-    if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)wishDialog.close();
+(function(){
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var t = function(ms){ return reduce ? 30 : ms; };
+  var env = document.getElementById("envelope"),
+      envScene = document.getElementById("envScene"),
+      cardScene = document.getElementById("cardScene"),
+      book = document.getElementById("book"),
+      cover = document.getElementById("cover"),
+      scroll = document.getElementById("scroll"),
+      closeCard = document.getElementById("closeCard"),
+      busy = false,
+      moving = false;
+  var tuckBtn = document.createElement("button");
+  tuckBtn.className = "tuck-btn"; tuckBtn.type = "button"; tuckBtn.hidden = true;
+  tuckBtn.textContent = "\u2709  Put it back in the envelope";
+  cardScene.appendChild(tuckBtn);
+  tuckBtn.addEventListener("click", putBack);
+
+  function onKey(fn){ return function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); fn(); } }; }
+
+  function openEnvelope(){
+    if(busy) return; busy = true;
+    env.classList.add("open");
+    setTimeout(function(){ envScene.classList.add("leave"); }, t(950));
+    setTimeout(function(){
+      envScene.hidden = true;
+      cardScene.hidden = false;
+      cover.focus({preventScroll:true});
+    }, t(1650));
   }
-});
+  function openCard(){ book.classList.add("open"); scroll.scrollTop = 0; tuckBtn.hidden = true; }
+  function shutCard(){
+    book.classList.remove("open"); scroll.scrollTop = 0;
+    setTimeout(function(){ if(!book.classList.contains("open") && !moving) tuckBtn.hidden = false; }, t(900));
+  }
+  function putBack(){
+    if(moving) return; moving = true;
+    tuckBtn.hidden = true;
+    var a = book.animate(
+      [{transform:"none",opacity:1},{transform:"translateY(7vh) scale(.5)",opacity:0}],
+      {duration:t(800),easing:"cubic-bezier(.5,0,.3,1)",fill:"forwards"});
+    setTimeout(function(){
+      envScene.classList.add("leave");
+      envScene.hidden = false;
+      void envScene.offsetWidth;
+      envScene.classList.remove("leave");
+    }, t(350));
+    setTimeout(function(){
+      cardScene.hidden = true;
+      a.cancel();
+      env.classList.remove("open");
+      env.focus({preventScroll:true});
+    }, t(950));
+    setTimeout(function(){ moving = false; busy = false; }, t(1900));
+  }
+
+  env.addEventListener("click", openEnvelope);
+  env.addEventListener("keydown", onKey(openEnvelope));
+  cover.addEventListener("click", openCard);
+  cover.addEventListener("keydown", onKey(openCard));
+  closeCard.addEventListener("click", shutCard);
+})();
 </script>
 </body>
 </html>
