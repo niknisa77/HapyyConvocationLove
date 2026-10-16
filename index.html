@@ -1,597 +1,158 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ms">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>For My Baby Love Alam ♡</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#fbf8f1; --pearl:#ffffff; --mist:#e8eef6;
+  --navy:#14284b; --navy-soft:#3d4f70; --gold:#b48a3c; --gold-light:#d9b96c;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  min-height:100dvh;color:var(--navy);font-family:'Jost',system-ui,sans-serif;
+  background:
+    radial-gradient(circle at 50% 0%,#ffffff 0,transparent 55%),
+    linear-gradient(160deg,#f6f1e4 0%,#fbf8f1 45%,#e8eef6 100%);
+  overflow-x:hidden;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+.main{min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:40px 22px;text-align:center}
 
-  <title>For My Baby Love Alam ♡</title>
+.card{
+  position:relative;width:100%;max-width:560px;background:var(--pearl);
+  padding:58px 36px 44px;border-radius:4px;
+  box-shadow:0 30px 70px rgba(20,40,75,.16),0 2px 6px rgba(20,40,75,.06);
+  animation:rise .9s ease both;
+}
+.card::before{content:"";position:absolute;inset:12px;border:1px solid var(--gold-light);pointer-events:none}
+.card::after{content:"";position:absolute;inset:17px;border:1px solid rgba(180,138,60,.35);pointer-events:none}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+.cap{
+  width:84px;height:84px;margin:0 auto 24px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(145deg,#1d3560,#0e1d38);
+  box-shadow:0 10px 26px rgba(20,40,75,.35),0 0 0 4px #fff,0 0 0 5px var(--gold-light);
+}
+.cap svg{width:46px;height:46px;stroke:var(--gold-light);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 
-  <style>
-    :root {
-      --black: #0c0b0d;
-      --dark: #161318;
-      --gold: #d8ba83;
-      --gold-light: #f6e1b4;
-      --cream: #fff7ea;
-      --muted: #b8a99b;
-    }
+.eyebrow{color:var(--gold);font-size:14px;font-weight:500;letter-spacing:.5px;margin-bottom:14px}
+h1{font-family:'Cormorant Garamond',serif;font-weight:700;line-height:1.02;font-size:clamp(44px,10vw,68px);color:var(--navy);letter-spacing:-.5px}
+h1 span{display:block;font-style:italic;font-weight:600;color:var(--gold)}
+.gold-line{height:1px;width:96px;margin:24px auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.name{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:clamp(30px,7vw,40px);color:var(--navy);margin-bottom:14px}
+.desc{font-weight:300;font-size:15px;line-height:1.95;color:var(--navy-soft);max-width:400px;margin:0 auto 32px}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+.open-btn{
+  border:0;border-radius:2px;padding:15px 46px;cursor:pointer;font:500 14px 'Jost',sans-serif;letter-spacing:1.5px;
+  color:#fff;background:linear-gradient(145deg,#1d3560,#0e1d38);
+  box-shadow:0 10px 24px rgba(20,40,75,.3),inset 0 0 0 1px var(--gold-light);
+  transition:transform .25s,box-shadow .25s;
+}
+.open-btn:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(20,40,75,.38),inset 0 0 0 1px var(--gold-light)}
+.open-btn:focus-visible,.close-btn:focus-visible{outline:3px solid var(--gold-light);outline-offset:4px}
+.from{margin-top:30px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:var(--navy-soft)}
 
-    body {
-      min-height: 100vh;
-      min-height: 100dvh;
-      color: var(--cream);
-      background:
-        radial-gradient(
-          circle at 50% 35%,
-          #3a2928 0%,
-          #171116 45%,
-          #09090b 100%
-        );
-      font-family: 'Poppins', sans-serif;
-      overflow-x: hidden;
-    }
+/* Letter */
+.wish-dialog{
+  position:fixed;inset:0;margin:auto;width:min(92%,660px);max-height:min(88dvh,820px);
+  border:0;border-radius:4px;background:var(--pearl);color:var(--navy);
+  box-shadow:0 40px 100px rgba(10,20,45,.45);overflow-y:auto;padding:54px 40px 40px;text-align:center;
+}
+.wish-dialog::backdrop{background:rgba(14,29,56,.6);backdrop-filter:blur(6px)}
+.wish-dialog[open]{animation:rise .4s ease both}
+.wish-dialog::before{content:"";display:block;height:4px;margin:-54px -40px 40px;background:linear-gradient(90deg,var(--navy),var(--gold),var(--navy))}
+.close-btn{
+  position:sticky;float:right;top:0;margin:-24px -16px 0 0;width:38px;height:38px;border-radius:50%;
+  border:1px solid var(--gold-light);background:var(--navy);color:var(--gold-light);font-size:22px;cursor:pointer;z-index:2;
+}
+.card-label{color:var(--gold);font-weight:500;font-size:14px;margin-bottom:10px}
+.card-heading{font-family:'Cormorant Garamond',serif;font-weight:700;color:var(--navy);font-size:clamp(36px,8vw,50px);line-height:1.08;margin-bottom:8px}
+.card-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;color:var(--gold)}
+.wish-content{margin-top:26px;font-weight:300;font-size:15px;line-height:2.05;color:#25375a}
+.wish-content p{margin-bottom:22px}
+.wish-content .highlight{color:var(--navy);font-weight:500;border-bottom:1px solid var(--gold-light)}
+.signature{margin-top:28px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;color:var(--navy);font-size:28px;line-height:1.5}
+.small-heart{font-size:26px;color:var(--gold);margin-top:14px}
 
-    /* Decorative luxury background */
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 18px;
-      border: 1px solid rgba(216,186,131,.13);
-      pointer-events: none;
-    }
-
-    .glow {
-      position: fixed;
-      width: 340px;
-      height: 340px;
-      background: rgba(210,168,100,.08);
-      filter: blur(90px);
-      border-radius: 50%;
-      left: 50%;
-      top: 35%;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-
-    /* Main screen */
-
-    .main {
-      position: relative;
-      min-height: 100vh;
-      min-height: 100dvh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 48px 24px;
-      text-align: center;
-    }
-
-    .welcome {
-      position: relative;
-      width: 100%;
-      max-width: 650px;
-      animation: appear .8s ease both;
-    }
-
-    @keyframes appear {
-      from {
-        opacity: 0;
-        transform: translateY(18px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .icon-box {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 27px;
-    }
-
-    .cap {
-      width: 78px;
-      height: 78px;
-      border-radius: 50%;
-      border: 1px solid rgba(216,186,131,.45);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: rgba(216,186,131,.06);
-      box-shadow: 0 0 45px rgba(216,186,131,.08);
-    }
-
-    .cap svg {
-      width: 42px;
-      height: 42px;
-      stroke: var(--gold);
-      fill: none;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .eyebrow {
-      color: var(--gold);
-      letter-spacing: 3px;
-      font-size: 10px;
-      text-transform: uppercase;
-      margin-bottom: 17px;
-    }
-
-    .main-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(48px, 9vw, 82px);
-      font-weight: 600;
-      line-height: .98;
-      letter-spacing: -.5px;
-      margin-bottom: 20px;
-    }
-
-    .main-title span {
-      display: block;
-      color: var(--gold-light);
-      font-style: italic;
-    }
-
-    .gold-line {
-      height: 1px;
-      width: 95px;
-      margin: 24px auto;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        var(--gold),
-        transparent
-      );
-    }
-
-    .name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(30px, 6vw, 45px);
-      font-style: italic;
-      color: var(--gold);
-      margin-bottom: 18px;
-    }
-
-    .description {
-      color: #d0c5b9;
-      font-weight: 300;
-      font-size: 13px;
-      line-height: 2;
-      max-width: 440px;
-      margin: 0 auto 34px;
-    }
-
-    .open-btn {
-      border: 1px solid var(--gold);
-      background: linear-gradient(
-        135deg,
-        #f1d8a6,
-        #cba669
-      );
-      padding: 15px 44px;
-      border-radius: 50px;
-      color: #241a12;
-      font-family: 'Poppins', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: .25s;
-      box-shadow: 0 10px 35px rgba(216,186,131,.15);
-    }
-
-    .open-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 35px rgba(216,186,131,.25);
-    }
-
-    .open-btn:focus-visible,
-    .close-btn:focus-visible {
-      outline: 3px solid var(--gold-light);
-      outline-offset: 4px;
-    }
-
-    .from {
-      margin-top: 35px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 17px;
-      letter-spacing: 1px;
-      color: var(--muted);
-      font-style: italic;
-    }
-
-    /* Wish card */
-
-    .wish-dialog {
-      position: fixed;
-      margin: auto;
-      inset: 0;
-      width: min(92%, 680px);
-      max-height: min(88vh, 820px);
-      max-height: min(88dvh, 820px);
-      border-radius: 18px;
-      border: 1px solid rgba(216,186,131,.45);
-      background: linear-gradient(
-        145deg,
-        #242024,
-        #100e12 65%
-      );
-      color: var(--cream);
-      box-shadow: 0 30px 100px rgba(0,0,0,.7);
-      overflow-y: auto;
-      padding: 48px 38px;
-      text-align: center;
-    }
-
-    .wish-dialog::backdrop {
-      background: rgba(0,0,0,.82);
-      backdrop-filter: blur(9px);
-    }
-
-    .wish-dialog[open] {
-      animation: cardAppear .35s ease both;
-    }
-
-    @keyframes cardAppear {
-      from {
-        opacity: 0;
-        transform: translateY(20px) scale(.97);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    .close-btn {
-      position: sticky;
-      float: right;
-      top: 0;
-      margin-top: -27px;
-      margin-right: -18px;
-      background: #30262a;
-      color: var(--gold-light);
-      border: 1px solid rgba(216,186,131,.35);
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      font-size: 20px;
-      cursor: pointer;
-      z-index: 2;
-    }
-
-    .card-label {
-      font-size: 10px;
-      letter-spacing: 3px;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-top: 10px;
-      margin-bottom: 15px;
-    }
-
-    .card-heading {
-      font-family: 'Cormorant Garamond', serif;
-      color: var(--gold-light);
-      font-size: clamp(34px, 6vw, 48px);
-      line-height: 1.1;
-      margin-bottom: 10px;
-    }
-
-    .card-subheading {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 25px;
-      font-style: italic;
-      color: var(--gold);
-    }
-
-    .wish-content {
-      margin-top: 32px;
-      font-size: 13px;
-      font-weight: 300;
-      color: #eee4db;
-      line-height: 2.15;
-      text-align: center;
-    }
-
-    .wish-content p {
-      margin-bottom: 22px;
-    }
-
-    .wish-content .highlight {
-      color: var(--gold-light);
-      font-weight: 500;
-    }
-
-    .signature {
-      margin-top: 35px;
-      font-family: 'Cormorant Garamond', serif;
-      color: var(--gold-light);
-      font-style: italic;
-      font-size: 26px;
-      line-height: 1.5;
-    }
-
-    .small-heart {
-      font-size: 27px;
-      color: var(--gold);
-      margin-top: 18px;
-    }
-
-    @media (max-width: 600px) {
-      body::before {
-        inset: 10px;
-      }
-
-      .main {
-        padding: 55px 28px;
-      }
-
-      .cap {
-        width: 68px;
-        height: 68px;
-      }
-
-      .eyebrow {
-        letter-spacing: 2px;
-      }
-
-      .description {
-        font-size: 12px;
-      }
-
-      .wish-dialog {
-        padding: 44px 23px 30px;
-      }
-
-      .close-btn {
-        margin-right: -9px;
-      }
-
-      .wish-content {
-        font-size: 12.5px;
-        line-height: 2;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: .01ms !important;
-        transition-duration: .01ms !important;
-      }
-    }
-  </style>
+@media(max-width:600px){
+  .card{padding:50px 24px 36px}
+  .wish-dialog{padding:46px 24px 32px}
+  .wish-dialog::before{margin:-46px -24px 36px}
+  .wish-content{font-size:14.5px;line-height:2}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
 </head>
-
 <body>
 
-  <div class="glow"></div>
-
-  <!-- MAIN PAGE -->
-  <main class="main">
-
-    <section class="welcome">
-
-      <div class="icon-box">
-        <div class="cap">
-          <svg viewBox="0 0 48 48" aria-hidden="true">
-            <path d="M4 17 24 8l20 9-20 9L4 17Z"/>
-            <path d="M12 21v11c7 6 17 6 24 0V21"/>
-            <path d="M44 17v13"/>
-            <circle cx="44" cy="33" r="2"/>
-          </svg>
-        </div>
-      </div>
-
-      <p class="eyebrow">
-        A Little Surprise, Just For You
-      </p>
-
-      <h1 class="main-title">
-        Happy Master's
-        <span>Convocation!</span>
-      </h1>
-
-      <div class="gold-line"></div>
-
-      <h2 class="name">
-        My Alam ♡
-      </h2>
-
-      <p class="description">
-        Your hard work, dedication, and dreams have
-        brought you to this beautiful moment.
-        I'm so proud of you, my love.
-      </p>
-
-      <button
-        class="open-btn"
-        id="openBtn"
-        type="button"
-      >
-        Open Me ♡
-      </button>
-
-      <p class="from">
-        With Love, Your Nisa
-      </p>
-
-    </section>
-
-  </main>
-
-
-  <!-- SPECIAL WISH CARD -->
-  <dialog class="wish-dialog" id="wishDialog">
-
-    <button
-      class="close-btn"
-      id="closeBtn"
-      type="button"
-      aria-label="Close wish"
-    >
-      ×
-    </button>
-
-    <div class="card-label">
-      A Special Letter For You
+<main class="main">
+  <section class="card">
+    <div class="cap">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <path d="M4 17 24 8l20 9-20 9L4 17Z"/><path d="M12 21v11c7 6 17 6 24 0V21"/><path d="M44 17v13"/><circle cx="44" cy="33" r="2"/>
+      </svg>
     </div>
-
-    <h2 class="card-heading">
-      Happy Convocation
-    </h2>
-
-    <p class="card-subheading">
-      My Alam yang paling nakal ♡
-    </p>
-
+    <p class="eyebrow">A little surprise, just for you</p>
+    <h1>Happy Master's <span>Convocation!</span></h1>
     <div class="gold-line"></div>
+    <h2 class="name">My Alam ♡</h2>
+    <p class="desc">Your hard work, dedication, and dreams have brought you to this beautiful moment. I'm so proud of you, my love.</p>
+    <button class="open-btn" id="openBtn" type="button">Open Me ♡</button>
+    <p class="from">With Love, Your Nisa</p>
+  </section>
+</main>
 
-    <div class="wish-content">
+<dialog class="wish-dialog" id="wishDialog">
+  <button class="close-btn" id="closeBtn" type="button" aria-label="Close wish">×</button>
+  <div class="card-label">A special letter for you</div>
+  <h2 class="card-heading">Happy Convocation</h2>
+  <p class="card-sub">My Alam yang paling nakal ♡</p>
+  <div class="gold-line"></div>
 
-      <!-- NEW: Congratulations paragraph -->
-      <p class="highlight">
-        Congratulations to you, sayang ❤️
-      </p>
+  <div class="wish-content">
+    <p><span class="highlight">Congratulations to you, sayang ❤️</span></p>
 
-      <p>
-        Tahniah, sayang saya! Akhirnya hari yang saya
-        tunggu sudah tiba. Setiap malam yang
-        awak berjaga, setiap penat lelah awak tanggung, semuanya terbayar
-        hari ini. I hope you can feel that I'm right by your side
-        on your convocation day. I didn't know what to
-        get for your convo preparation, so I got you
-        a pair of shoes. May these shoes walk with you
-        through this achievement, as if I'm taking every
-        step right by your side.
-      </p>
+    <p>Tahniah, sayang saya! Akhirnya hari yang saya tunggu sudah tiba. Setiap malam yang awak berjaga, setiap penat lelah awak tanggung, semuanya terbayar hari ini. I hope you can feel that I'm right by your side on your convocation day. I didn't know what to get for your convo preparation, so I got you a pair of shoes. May these shoes walk with you through this achievement, as if I'm taking every step right by your side.</p>
 
-      <!-- Existing paragraphs -->
-      <p>
-        Saya bangga dengan awak, sangat-sangat bangga.
-        Sebenarnya, saya sentiasa bangga dengan awak,
-        dengan setiap usaha, pencapaian dan segala
-        perkara yang awak lakukan.
-      </p>
+    <p>Saya bangga dengan awak, sangat-sangat bangga. Sebenarnya, saya sentiasa bangga dengan awak, dengan setiap usaha, pencapaian dan segala perkara yang awak lakukan.</p>
 
-      <p>
-        Maafkan saya kerana mungkin selama ini saya
-        jarang mengungkapkan betapa bangganya saya
-        terhadap awak. Tapi percayalah, sayang,
-        jauh di sudut hati saya, saya sentiasa
-        mengagumi awak dan segala usaha awak
-        untuk sampai ke tahap ini.
-      </p>
+    <p>Maafkan saya kerana mungkin selama ini saya jarang mengungkapkan betapa bangganya saya terhadap awak. Tapi percayalah, sayang, jauh di sudut hati saya, saya sentiasa mengagumi awak dan segala usaha awak untuk sampai ke tahap ini.</p>
 
-      <p>
-        Saya percaya awak mampu melakukan apa sahaja
-        yang awak impikan. Walau apa pun cabaran
-        yang datang, saya tahu awak mampu
-        menghadapinya. Di mata saya, awak seorang
-        yang sangat hebat, istimewa dan sempurna
-        dengan cara awak sendiri.
-      </p>
+    <p>Saya percaya awak mampu melakukan apa sahaja yang awak impikan. Walau apa pun cabaran yang datang, saya tahu awak mampu menghadapinya. Di mata saya, awak seorang yang sangat hebat, istimewa dan sempurna dengan cara awak sendiri.</p>
 
-      <p>
-        Semoga Allah SWT sentiasa memberkati setiap
-        langkah awak, mempermudahkan segala urusan,
-        melimpahkan rezeki yang tidak putus-putus,
-        serta mengurniakan kejayaan dan kebahagiaan
-        di dunia dan akhirat. Semoga segala impian
-        yang awak simpan dalam hati satu demi satu
-        menjadi kenyataan.
-      </p>
+    <p>Semoga Allah SWT sentiasa memberkati setiap langkah awak, mempermudahkan segala urusan, melimpahkan rezeki yang tidak putus-putus, serta mengurniakan kejayaan dan kebahagiaan di dunia dan akhirat. Semoga segala impian yang awak simpan dalam hati satu demi satu menjadi kenyataan.</p>
 
-      <p>
-        Terima kasih kerana terus berusaha dan tidak
-        pernah berputus asa. Saya harap awak tahu
-        betapa berharganya diri awak dan betapa
-        bangganya saya dapat menyaksikan setiap
-        kejayaan awak.
-      </p>
+    <p>Terima kasih kerana terus berusaha dan tidak pernah berputus asa. Saya harap awak tahu betapa berharganya diri awak dan betapa bangganya saya dapat menyaksikan setiap kejayaan awak.</p>
 
-      <p class="highlight">
-        Congratulations on your Master's Convocation,
-        Sayanggggg ❤️
-      </p>
+    <p><span class="highlight">Congratulations on your Master's Convocation, Sayanggggg ❤️</span></p>
 
-      <p>
-        No matter how far you go or how much you
-        achieve, I will always be one of the people
-        cheering for you, praying for you,
-        and believing in you. Love you bb...
-      </p>
+    <p>No matter how far you go or how much you achieve, I will always be one of the people cheering for you, praying for you, and believing in you. Love you bb...</p>
 
-      <p class="highlight">
-        I'm so proud of you, my love. Always. Nisa Sayang Alam banyak banyakk banyakk
-      </p>
+    <p><span class="highlight">I'm so proud of you, my love. Always. Nisa Sayang Alam banyak banyakk banyakk</span></p>
+  </div>
 
-    </div>
+  <div class="gold-line"></div>
+  <div class="signature">With all my love,<br>Your Nisa ♡</div>
+  <div class="small-heart">♡</div>
+</dialog>
 
-    <div class="gold-line"></div>
-
-    <div class="signature">
-      With all my love,
-      <br>
-      Your Nisa ♡
-    </div>
-
-    <div class="small-heart">
-      ♡
-    </div>
-
-  </dialog>
-
-
-  <script>
-    const openBtn = document.getElementById("openBtn");
-    const closeBtn = document.getElementById("closeBtn");
-    const wishDialog = document.getElementById("wishDialog");
-
-    // Open the special card
-    openBtn.addEventListener("click", () => {
-      wishDialog.showModal();
-      wishDialog.scrollTop = 0;
-    });
-
-    // Close the special card
-    closeBtn.addEventListener("click", () => {
-      wishDialog.close();
-    });
-
-    // Close when clicking outside the card
-    wishDialog.addEventListener("click", (event) => {
-      if (event.target === wishDialog) {
-        const rect = wishDialog.getBoundingClientRect();
-
-        const outside =
-          event.clientX < rect.left ||
-          event.clientX > rect.right ||
-          event.clientY < rect.top ||
-          event.clientY > rect.bottom;
-
-        if (outside) {
-          wishDialog.close();
-        }
-      }
-    });
-  </script>
-
+<script>
+const openBtn=document.getElementById("openBtn"),
+      closeBtn=document.getElementById("closeBtn"),
+      wishDialog=document.getElementById("wishDialog");
+openBtn.addEventListener("click",()=>{wishDialog.showModal();wishDialog.scrollTop=0});
+closeBtn.addEventListener("click",()=>wishDialog.close());
+wishDialog.addEventListener("click",e=>{
+  if(e.target===wishDialog){
+    const r=wishDialog.getBoundingClientRect();
+    if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)wishDialog.close();
+  }
+});
+</script>
 </body>
 </html>
